@@ -12,28 +12,26 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer accountId;
+    private int accountId;
 
-    private Integer customerId;
-
+    private int customerId;
     private String accountType;
-
-    private Double balance;
+    private double balance;
 
     // Getters and Setters
-    public Integer getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
-    public Integer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -45,17 +43,11 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public Double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
-
-    @Override
-    public String toString() {
-        return "Account [accountId=" + accountId + ", customerId=" + customerId + ", accountType=" + accountType + ", balance=" + balance + "]";
-    }
 }
-

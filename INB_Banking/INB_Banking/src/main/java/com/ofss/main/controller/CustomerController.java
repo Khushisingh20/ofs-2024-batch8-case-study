@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ofss.main.domain.Customer;
 import com.ofss.main.domain.Login;
-import com.ofss.main.domain.RegisterRequest; // Ensure this import is correct
+import com.ofss.main.domain.RegisterRequest;
 import com.ofss.main.service.CustomerService;
 import com.ofss.main.domain.ResponseMessage;
 import org.slf4j.Logger;
@@ -24,17 +24,18 @@ public class CustomerController {
     @PostMapping("/register")
     public ResponseEntity<?> registerCustomer(@RequestBody RegisterRequest registerRequest) {
         try {
-            // Extract customer and login details from the request
+            // Extract customer, login details, and account type from the request
             Customer customer = registerRequest.getCustomer();
             Login login = registerRequest.getLogin();
+            String accountType = registerRequest.getAccountType();
 
-            // Check if either customer or login is null
-            if (customer == null || login == null) {
-                return ResponseEntity.badRequest().body(new ResponseMessage("Customer or Login is missing"));
+            // Check if either customer, login, or accountType is null
+            if (customer == null || login == null || accountType == null) {
+                return ResponseEntity.badRequest().body(new ResponseMessage("Customer, Login, or Account Type is missing"));
             }
 
-            logger.info("Registering customer and login details.");
-            customerService.registerCustomer(customer, login);
+            logger.info("Registering customer, login details, and account type.");
+            customerService.registerCustomer(customer, login, accountType);
 
             return ResponseEntity.ok().body(new ResponseMessage("Registration Successful"));
         } catch (Exception e) {
@@ -42,4 +43,3 @@ public class CustomerController {
         }
     }
 }
-

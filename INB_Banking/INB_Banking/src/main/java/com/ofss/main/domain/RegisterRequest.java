@@ -4,6 +4,7 @@ public class RegisterRequest {
 
     private Customer customer;
     private Login login;
+    private String accountType; // New field
 
     // Getters and Setters
     public Customer getCustomer() {
@@ -20,5 +21,13 @@ public class RegisterRequest {
 
     public void setLogin(Login login) {
         this.login = login;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }
