@@ -1,0 +1,198 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+
+
+ -->
+ <!-- Activity-02 -->
+<div class="oj-hybrid-padding">
+  <h2>Registration</h2>
+  <oj-c-form-layout
+    id="formLayoutOptions"
+    max-columns="4"
+    direction="row"
+    user-assistance-density="compact"
+  >
+    <h5>Enter name</h5>
+    <oj-c-input-text
+      id="text-input"
+      value="{{firstname}}"
+      label-hint="Enter firstname"
+      label-edge="inside"
+    ></oj-c-input-text>
+
+    <h6>Hey <oj-bind-text value="[[firstname]]"></oj-bind-text></h6>
+
+    <h5>Enter salary</h5>
+    <oj-c-input-number
+      value="{{salary}}"
+      label-hint="Enter salary"
+      min="0"
+      max="100"
+      step="0"
+    ></oj-c-input-number>
+    <h6>Salary is <oj-bind-text value="[[salary]]"></oj-bind-text></h6>
+
+    <h5>Enter Password</h5>
+    <oj-c-input-password
+      value="{{password}}"
+      label-hint="Enter password"
+    ></oj-c-input-password>
+
+    <h5>Enter date</h5>
+    <oj-c-input-date-text
+      label-hint="Enter date"
+      value="{{date}}"
+    ></oj-c-input-date-text>
+    <h6>Date is <oj-bind-text value="[[date]]"></oj-bind-text></h6>
+
+
+    <!-- Activity-03
+    <h5>Button</h5>
+    <oj-button id="button1" on-oj-action="[[buttonAction]]" disabled = "[[firstname()== null || firstname().trim() === '']]"]
+      >Submit</oj-button
+    >
+    <span id="results">
+      <oj-bind-text value="[[activatedButton]]"></oj-bind-text>
+    </span>
+
+    <h5>Update button</h5>
+    <oj-c-message-banner
+      data="[[personalInformationMessages]]"
+      type="section"
+      on-oj-close="[[closePersonalInformationMessage]]"
+    ></oj-c-message-banner>
+
+    <oj-form-layout class="oj-sm-margin-5x-top" direction="row" max-columns="3">
+      <oj-c-input-text label-hint="Employee Name"></oj-c-input-text>
+      <oj-c-input-text label-hint="Employee DOB"></oj-c-input-text>
+      <oj-c-input-text label-hint="Employee Email"></oj-c-input-text>
+    </oj-form-layout>
+
+    <oj-c-button
+      chroming="outlined"
+      on-oj-action="[[updatePersonalInfo]]"
+      label="Update"
+    ></oj-c-button>
+    
+    <div class="oj-sm-margin-1x-bottom">Determinate Progress Bar</div>
+    <oj-c-progress-bar
+      class="oj-sm-margin-4x-bottom demo-width"
+      id="progressBar"
+      value="{{progressValue}}"
+    ></oj-c-progress-bar>
+
+  </oj-c-form-layout>
+  <oj-c-input-text
+  id="text-input"
+  value="{{username}}"
+  label-hint="Enter firstname"
+  label-edge="inside"
+></oj-c-input-text>
+<oj-c-input-text
+  id="text-input"
+  value="{{email}}"
+  label-hint="Enter firstname"
+  label-edge="inside"
+></oj-c-input-text>
+<oj-c-input-text
+  id="text-input"
+  value="{{street}}"
+  label-hint="Enter firstname"
+  label-edge="inside"
+></oj-c-input-text>
+<oj-c-input-text
+  id="text-input"
+  value="{{suite}}"
+  label-hint="Enter firstname"
+  label-edge="inside"
+></oj-c-input-text>
+//Activity-04
+<oj-table
+            id="table"
+            aria-label="Departments Table"
+            accessibility.row-header="depName"
+            data="[[dataprovider]]"
+            selection-mode='{"row": "multiple", "column": "multiple"}'
+            dnd='{"reorder": {"columns": "enabled"}}'
+            scroll-policy="loadMoreOnScroll"
+            scroll-policy-options='{"fetchSize": 10}'
+            columns='[{"headerText": "Department Id", 
+                       "field": "DepartmentId",
+                       "headerClassName": "oj-sm-only-hide",
+                       "className": "oj-sm-only-hide",
+                       "resizable": "enabled",
+                       "id": "depId"},
+                      {"headerText": "Department Name", 
+                       "field": "DepartmentName",
+                       "resizable": "enabled",
+                       "id": "depName"},
+                      {"headerText": "Location Id", 
+                       "field": "LocationId",
+                       "headerClassName": "oj-sm-only-hide",
+                       "className": "oj-sm-only-hide",
+                       "resizable": "enabled",
+                       "id": "locId"},
+                      {"headerText": "Manager Id", 
+                       "field": "ManagerId",
+                       "resizable": "enabled",
+                       "id": "manId"},
+                      {"headerText": "Employee Count", 
+                       "field": "EmployeeCount",
+                       "headerClassName": "oj-md-down-hide",
+                       "className": "oj-md-down-hide",
+                       "resizable": "enabled",
+                       "id": "empCount"}]'
+            class="demo-table-container"></oj-table>
+            <div id="listViewContainer">
+              <oj-c-list-item-layout>
+                  <oj-c-selector-all
+                        selected-keys="{{selectedItems}}"
+                        slot="selector"
+                        id="selectAll"
+                        aria-label="select all"></oj-c-selector-all>
+                <span>Select All</span>  
+              </oj-c-list-item-layout>
+              
+              <oj-c-list-view
+                id="listview"
+                aria-label="list to show selection features"
+                data="[[dataProvider]]"
+                selected="{{selectedItems}}"
+                selection-mode="multiple"
+                on-selected-changed="[[handleSelectedChanged]]">
+                <template slot="itemTemplate" data-oj-as="item">
+                  <oj-c-list-item-layout>
+                    <span class="oj-typography-body-md oj-text-color-primary">
+                      <oj-bind-text value="[[item.item.data.name]]"></oj-bind-text>
+                    </span>
+                    <oj-c-selector
+                      :aria-label="[[item.item.data.name]]"
+                      slot="selector"
+                      selected-keys="{{selectedItems}}"
+                      selection-mode="multiple"
+                      row-key="[[item.item.data.id]]"></oj-c-selector>
+                    <oj-c-avatar slot="leading" size="xs" src="[[item.item.data.image]]"></oj-c-avatar>
+                    <span slot="secondary" class="oj-typography-body-sm oj-text-color-secondary">
+                      <oj-bind-text value="[[item.item.data.title]]"></oj-bind-text>
+                    </span>
+                  </oj-c-list-item-layout>
+                </template>
+              </oj-c-list-view>
+            
+              <div class="oj-typography-body-sm oj-text-color-secondary">
+                <br />
+                <label for="curr-selection">Current Selection:&nbsp;</label>
+                <span id="curr-selection-value">
+                  <oj-bind-text value="[[getDisplayValue(selectedItems())]]"></oj-bind-text>
+                </span>
+                <br />
+                <br />
+                <label for="selected-item-ids">IDs from Selected Change Event:&nbsp;</label>
+                <span id="selected-item-ids-value">
+                  <oj-bind-text value="[[ko.toJSON(selectedIds)]]"></oj-bind-text>
+                </span>
+              </div>
+            </div>
+</div> -->
