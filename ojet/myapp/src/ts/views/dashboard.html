@@ -1,0 +1,23 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+  <h1 style="padding-inline:400px;">User Login</h1>
+  <div style="padding-inline:400px;">
+  <oj-form-layout max-columns="1" direction="row">
+    <oj-c-input-text value="{{username}}" label-hint="Enter username"></oj-c-input-text>
+    <oj-c-input-password
+      value="{{password}} "
+      label-hint="Enter password"
+    ></oj-c-input-password>
+  </oj-form-layout>
+
+  <oj-c-button
+    id="button1"
+    on-oj-action="[[buttonAction]]"
+    disabled="[[username()==null || username().trim()==='']]"
+    label="Submit"
+  ></oj-c-button>
+</div>

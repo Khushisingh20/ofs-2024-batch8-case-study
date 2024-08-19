@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="path/to/oj-alta-min.css">
+    <script src="path/to/require.js"></script>
+    <script>
+        require.config({
+            paths: {
+                'knockout': 'path/to/knockout',
+                'ojs': 'path/to/ojs',
+                'oj': 'path/to/oj',
+                'incident': 'path/to/incident' // Adjust the path according to your setup
+            },
+            shim: {
+                'knockout': { exports: 'ko' },
+                'oj': { deps: ['knockout'], exports: 'oj' }
+            }
+        });
+
+        require(['incident'], function (IncidentsViewModel) {
+            document.addEventListener('DOMContentLoaded', function() {
+                const viewModel = new IncidentsViewModel();
+                ko.applyBindings(viewModel);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="oj-hybrid-padding">
+        <h1>Registration Form</h1>
+        <div>
+            <oj-form-layout max-columns="2" direction="row">
+                <!-- First Name -->
+                <oj-c-input-text
+                    id="first-name"
+                    value="{{firstName}}"
+                    label-hint="Enter First Name"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Last Name -->
+                <oj-c-input-text
+                    id="last-name"
+                    value="{{lastName}}"
+                    label-hint="Enter Last Name"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Gender -->
+                <oj-c-input-text
+                    id="gender"
+                    value="{{gender}}"
+                    label-hint="Enter Gender"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Email -->
+                <oj-c-input-text
+                    id="email"
+                    value="{{email}}"
+                    label-hint="Enter Email"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Mobile Number -->
+                <oj-c-input-text
+                    id="mobile"
+                    value="{{mobile}}"
+                    label-edge="inside"
+                    label-hint="Enter Mobile Number"
+                    
+                ></oj-c-input-text>
+
+                <!-- Customer Status -->
+                <oj-c-input-text
+                    id="customer-status"
+                    value="{{customerStatus}}"
+                    label-hint="Enter Customer Status"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Password -->
+                <oj-c-input-password
+                    id="password"
+                    value="{{password}}"
+                    label-hint="Enter Password"
+                    label-edge="inside"
+                ></oj-c-input-password>
+
+                <!-- Login Status -->
+                <oj-c-input-text
+                    id="login-status"
+                    value="{{loginStatus}}"
+                    label-hint="Enter Login Status"
+                    label-edge="inside"
+                ></oj-c-input-text>
+
+                <!-- Login Attempts -->
+                <oj-c-input-number
+                    id="login-attempts"
+                    value="{{loginAttempts}}"
+                    label-hint="Enter Login Attempts"
+                    min="0"
+                    step="1"
+                ></oj-c-input-number>
+
+                <!-- Account Type -->
+                <oj-c-input-text
+                    id="account-type"
+                    value="{{accountType}}"
+                    label-hint="Enter Account Type"
+                    label-edge="inside"
+                ></oj-c-input-text>
+            </oj-form-layout>
+
+            <!-- Submit Button -->
+            <oj-c-button
+                id="button1"
+                on-oj-action="[[buttonAction]]"
+                disabled="[[firstName()==null || firstName().trim()==='']]"
+                label="Submit"
+            ></oj-c-button>
+        </div>
+    </div>
+</body>
+</html>
